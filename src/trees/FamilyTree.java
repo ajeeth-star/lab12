@@ -24,6 +24,9 @@ public class FamilyTree {
         void addChild(TreeNode childNode) {
             // Add childNode to this node's children list. Also
             // set childNode's parent to this node.
+
+            children.add(childNode);
+            childNode.parent = this;
         }
 
         // Searches subtree at this node for a node
@@ -192,7 +195,7 @@ public class FamilyTree {
         try {
             FamilyTree tree = new FamilyTree();
             System.out.println("Tree:\n" + tree + "\n**************\n");
-            TreeNode ancestor = tree.getMostRecentCommonAncestor("Bilbo", "Frodo");
+            TreeNode ancestor = tree.getMostRecentCommonAncestor("Mungo", "Pansy");
             System.out.println("Most recent common ancestor of Bilbo and Frodo is " + ancestor.getName());
         } catch (IOException x) {
             System.out.println("IO trouble: " + x.getMessage());
