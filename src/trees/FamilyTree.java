@@ -1,5 +1,6 @@
 package trees;
 
+//hello silly boy
 import java.util.*;
 import java.io.*;
 import javax.swing.*;
@@ -30,14 +31,22 @@ public class FamilyTree {
         // with the given name. Returns the node, or null if not found.
         TreeNode getNodeWithName(String targetName) {
             // Does this node have the target name?
-            if (?????)
+            if (this.name.equals(targetName))
+            {
                 return this;
+            }
                     
             // No, recurse. Check all children of this node.
             for (TreeNode child: children)
             {
+
+                TreeNode node = child.getNodeWithName(targetName);
                 // If child.getNodeWithName(targetName) returns a non-null node,
                 // then that's the node we're looking for. Return it.
+                if (node!= null)
+                {
+                    return node;
+                }
             }
             
             // Not found anywhere.
@@ -49,6 +58,12 @@ public class FamilyTree {
         // ending with the root. Order is from recent to ancient.
         ArrayList<TreeNode> collectAncestorsToList() {
             ArrayList<TreeNode> ancestors = new ArrayList<>();
+            TreeNode cur = this.parent;
+            while(cur != null)
+            {
+                ancestors.add(cur);
+                cur = cur.parent;
+            }
 
             // ????? Collect ancestors of this TreeNode into the array list. HINT: going up
             // the nodes of a tree is like traversing a linked list. If that isn’t clear,
@@ -143,10 +158,10 @@ public class FamilyTree {
     TreeNode getMostRecentCommonAncestor(String name1, String name2) throws TreeException
     {
         // Get nodes for input names.
-        TreeNode node1 = root.???        // node whose name is name1
+        TreeNode node1 = root.getNodeWithName(name1);        // node whose name is name1
         if (node1 == null)
             ??? Throw a TreeException with a useful message
-        TreeNode node2 = root.???        // node whose name is name2
+        TreeNode node2 = root.getNodeWithName(name2);        // node whose name is name2
         if (node2 == null)
             ??? Throw TreeException with a useful message
         
